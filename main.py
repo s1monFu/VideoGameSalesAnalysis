@@ -7,5 +7,5 @@ vgSales = pd.read_csv(os.path.join("vgsales.csv"))
 # Find out what genre of games is most popular
 fig, ax = plt.subplots(figsize=(6,4))
 genreSales = vgSales.groupby("Genre").sum().sort_values("Global_Sales",ascending=False)
-genreSales.plot.bar(ax=ax,y=["Global_Sales"])
+genreSales.plot.bar(ax=ax,y=["Global_Sales"],rot=45)
 fig.savefig(os.path.join("Graphs","GenreSales"),bbox_inches='tight')
