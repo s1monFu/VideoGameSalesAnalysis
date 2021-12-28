@@ -20,4 +20,3 @@ overtimeSales.reset_index(level=0, inplace=True)
 overtimeSales = overtimeSales.pivot(columns="Genre",values = "Global_Sales").fillna(0)
 overtimeSales.plot.line(ax=ax2)
 fig2.savefig(os.path.join("Graphs","OvertimeSales"),bbox_inches='tight')
-# 
