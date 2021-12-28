@@ -5,11 +5,12 @@ import pandas as pd
 import os
 
 class SalePredictor:
-    def __init__(self) -> None:
+    def __init__(self):
+        self.model = Pipeline([
+        ])
+    def fit(self,train_x,train_y):
         pass
-    def fit():
+    def predict(self,test_x):
         pass
-    def predict():
-        pass
-    def score():
+    def score(self,train_x,train_y,test_x,test_y):
         pass
