@@ -1,4 +1,6 @@
 from sklearn.linear_model import LinearRegression
+from sklearn.preprocessing import OneHotEncoder
+from sklearn.pipeline import Pipeline
 import pandas as pd
 import matplotlib.pyplot as plt
 import os
@@ -20,3 +22,5 @@ overtimeSales.reset_index(level=0, inplace=True)
 overtimeSales = overtimeSales.pivot(columns="Genre",values = "Global_Sales").fillna(0)
 overtimeSales.plot.line(ax=ax2)
 fig2.savefig(os.path.join("Graphs","OvertimeSales"),bbox_inches='tight')
+
+# What factors affect the game sale the most
