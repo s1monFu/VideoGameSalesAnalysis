@@ -4,13 +4,21 @@ from sklearn.pipeline import Pipeline
 import pandas as pd
 import os
 
+
 class SalePredictor:
-    def __init__(self):
+    def __init__(self,_xcols,_ycol):
         self.model = Pipeline([
+            ("onehot", OneHotEncoder()),  
+            ("linear", LinearRegression())
         ])
-    def fit(self,train_x,train_y):
-        pass
-    def predict(self,test_x):
-        pass
-    def score(self,train_x,train_y,test_x,test_y):
+        self.xcols = _xcols
+        self.ycol = _ycol
+
+    def fit(self, train):
+        self.model.fit(train[self.xcols], train[self.ycol])
+
+    def predict(self, test):
+        print(self.model.predict(test[self.xcols]))
+
+    def score(self, train_x, train_y, test_x, test_y):
         pass

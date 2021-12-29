@@ -1,9 +1,11 @@
 from sklearn.linear_model import LinearRegression
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.pipeline import Pipeline
+from sklearn.model_selection import train_test_split
 import pandas as pd
 import matplotlib.pyplot as plt
 import os
+from SalePredictor import SalePredictor
 
 # Read in data
 vgSales = pd.read_csv(os.path.join("Data","vgsales.csv"))
@@ -23,4 +25,8 @@ overtimeSales = overtimeSales.pivot(columns="Genre",values = "Global_Sales").fil
 overtimeSales.plot.line(ax=ax2)
 fig2.savefig(os.path.join("Graphs","OvertimeSales"),bbox_inches='tight')
 
-# What factors affect the game sale the most
+# A linear regression model for sale prediction
+train,test = train_test_split(vgSales)
+predictor = SalePredictor(["Platform","Genre","Year"],"Global_Sales")
+predictor.fit(train)
+predictor.predict(test)
