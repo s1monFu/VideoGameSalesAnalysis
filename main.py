@@ -8,6 +8,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import os
 from sklearn.compose import make_column_transformer
+from sklearn.model_selection import cross_val_score
 
 # Read in data
 vgSales = pd.read_csv(os.path.join("Data","vgsales.csv"))
@@ -30,8 +31,8 @@ fig2.savefig(os.path.join("Graphs","OvertimeSales"),bbox_inches='tight')
 # A linear regression model for sale prediction
 train,test = train_test_split(vgSales)
 model = Pipeline([
-            ("transformer",make_column_transformer((OneHotEncoder(),["Genre"]))),
+            ("transformer",make_column_transformer((OneHotEncoder(),["Genre","Platform"]))),
             ("linear",LinearRegression())
         ])
-model.fit(train[["Genre"]],train["Global_Sales"])
-print(model.predict(test[["Genre"]]))
+scores = cross_val_score(model,train[["Genre","Platform","Year"]],train["Global_Sales"],cv=10)
+print(scores)
