@@ -1,3 +1,5 @@
+from numpy import mod
+from pandas.core.algorithms import mode
 from sklearn.linear_model import LinearRegression
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.pipeline import Pipeline
@@ -5,7 +7,7 @@ from sklearn.model_selection import train_test_split
 import pandas as pd
 import matplotlib.pyplot as plt
 import os
-from SalePredictor import SalePredictor
+from sklearn.compose import make_column_transformer
 
 # Read in data
 vgSales = pd.read_csv(os.path.join("Data","vgsales.csv"))
@@ -27,6 +29,9 @@ fig2.savefig(os.path.join("Graphs","OvertimeSales"),bbox_inches='tight')
 
 # A linear regression model for sale prediction
 train,test = train_test_split(vgSales)
-predictor = SalePredictor(["Platform","Genre","Year"],"Global_Sales")
-predictor.fit(train)
-predictor.predict(test)
+model = Pipeline([
+            ("transformer",make_column_transformer((OneHotEncoder(),["Genre"]))),
+            ("linear",LinearRegression())
+        ])
+model.fit(train[["Genre"]],train["Global_Sales"])
+print(model.predict(test[["Genre"]]))
