@@ -35,4 +35,4 @@ model = Pipeline([
             ("linear",LinearRegression())
         ])
 scores = cross_val_score(model,train[["Genre","Platform","Year"]],train["Global_Sales"],cv=10)
-print(scores)
+print(type(scores))
