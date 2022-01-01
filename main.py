@@ -9,6 +9,7 @@ import matplotlib.pyplot as plt
 import os
 from sklearn.compose import make_column_transformer
 from sklearn.model_selection import cross_val_score
+import numpy as np
 
 # Read in data
 vgSales = pd.read_csv(os.path.join("Data","vgsales.csv"))
@@ -35,4 +36,5 @@ model = Pipeline([
             ("linear",LinearRegression())
         ])
 scores = cross_val_score(model,train[["Genre","Platform","Year"]],train["Global_Sales"],cv=10)
-print(type(scores))
+scores = scores[~np.isnan(scores)]
+print(scores.mean())
