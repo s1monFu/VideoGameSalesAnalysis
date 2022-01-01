@@ -18,7 +18,9 @@ vgSales = pd.read_csv(os.path.join("Data","vgsales.csv"))
 fig, ax = plt.subplots(figsize=(6, 4))
 genreSales = vgSales.groupby("Genre").sum().sort_values(
     "Global_Sales", ascending=False)
+avg = genreSales["Global_Sales"].mean()
 genreSales.plot.bar(ax=ax, y=["Global_Sales"], rot=45)
+plt.axhline(y=avg, color='r', linestyle='-')
 fig.savefig(os.path.join("Graphs", "GenreSales"), bbox_inches='tight')
 
 # How do sales of different types of games change over time
