@@ -12,7 +12,7 @@ Based on the graph of game sales of different game genres, it is clear that acti
 ### Q2: How do sales of different types of games change overtime?
 ![image](https://user-images.githubusercontent.com/49095933/147861778-ae80f199-df17-44e2-9e3b-eaf56983fafb.png)
 
-According to the overtime game sale graph, the game sales of all game gradually increases and reached peak from 2005 to 2010. Game sales of all genres of game drastically decreases after that period. 
+According to the overtime game sale graph, the game sales of all game gradually increases and reached peak around 2005 to 2010. Game sales of all genres of game drastically decreases after that period. 
 ## Discussion
 TBD
 ## Reference
