@@ -10,6 +10,7 @@ import os
 from sklearn.compose import make_column_transformer
 from sklearn.model_selection import cross_val_score
 import numpy as np
+from sklearn.preprocessing import PolynomialFeatures
 
 # Read in data
 vgSales = pd.read_csv(os.path.join("Data","vgsales.csv"))
@@ -35,6 +36,7 @@ fig2.savefig(os.path.join("Graphs","OvertimeSales"),bbox_inches='tight')
 train,test = train_test_split(vgSales)
 model = Pipeline([
             ("transformer",make_column_transformer((OneHotEncoder(),["Genre","Platform"]))),
+            ("poly",PolynomialFeatures(degree = 2, include_bias=False)),
             ("linear",LinearRegression())
         ])
 scores = cross_val_score(model,train[["Genre","Platform","Year"]],train["Global_Sales"],cv=10)
